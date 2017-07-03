@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>TeTinyTrumpTris</title>
+		<style>
+			html,
+			body,
+			div,
+			canvas { 
+				margin: 0; padding: 0; 
+			}
+			#canvas{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#canvas-container{
+				width: 500px;
+				height: 500px;
+				overflow: hidden;
+				display: flex;
+				justify-content: center;
+			}
+			p{
+				font-family: Tahoma;
+				color: #212b66;
+				align-self: center;
+				font-size: 20px;
+			}
+		</style>
+		<script>
+			function UnityProgress (dom) {
+				this.progress = 0.0;
+				this.dom = dom;
+
+				this.SetProgress = function (progress) { 
+
+				}
+				
+				this.SetMessage = function() {
+					
+				}
+
+				this.Clear = function() {
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="canvas-container">
+			<canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+			<p>loading a tremendous game..</p>
+		</div>
+		<script>
+			var size = 500 * devicePixelRatio;
+			var canvas = document.querySelector("canvas");
+			canvas.style.height = size + "px";
+			canvas.style.width = size + "px";
+			canvas.setAttribute("width", size);
+			canvas.setAttribute("height", size);
+			if(devicePixelRatio != 1) {
+					canvas.style.transformOrigin = "0 0";
+					canvas.style.transform = "scale("+1.0/devicePixelRatio+")";
+			}
+		</script>
+		<script type='text/javascript'>
+			var Module = {
+				TOTAL_MEMORY: 268435456,
+				errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+				compatibilitycheck: null,
+				backgroundColor: "#00000000",
+				splashStyle: "Dark",
+				dataUrl: "Release/trumptris.data",
+				codeUrl: "Release/trumptris.js",
+				asmUrl: "Release/trumptris.asm.js",
+				memUrl: "Release/trumptris.mem",
+			};
+		</script>
+		<script src="Release/UnityLoader.js"></script>
+	</body>
+</html>
