@@ -8,10 +8,10 @@
 			html,
 			body,
 			div,
-			canvas { 
-				margin: 0; padding: 0; 
+			canvas {
+				margin: 0; padding: 0;
 			}
-			#canvas{
+			#game-container{
 				position: absolute;
 				left: 0;
 				top: 0;
@@ -35,50 +35,47 @@
 				this.progress = 0.0;
 				this.dom = dom;
 
-				this.SetProgress = function (progress) { 
+				this.SetProgress = function (progress) {
 
 				}
-				
+
 				this.SetMessage = function() {
-					
+
 				}
 
 				this.Clear = function() {
-					
+
 				}
 			}
 		</script>
+		<script src="Release/UnityLoader.js"></script>
 	</head>
 	<body>
 		<div id="canvas-container">
-			<canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 			<p>loading a tremendous game..</p>
 		</div>
+		<div id="game-container" style="display:none;"/>
 		<script>
+			var gameContainer = document.getElementById('game-container');
 			var size = 500 * devicePixelRatio;
-			var canvas = document.querySelector("canvas");
-			canvas.style.height = size + "px";
-			canvas.style.width = size + "px";
-			canvas.setAttribute("width", size);
-			canvas.setAttribute("height", size);
+			gameContainer.style.height = size + "px";
+			gameContainer.style.width = size + "px";
 			if(devicePixelRatio != 1) {
-					canvas.style.transformOrigin = "0 0";
-					canvas.style.transform = "scale("+1.0/devicePixelRatio+")";
+				gameContainer.style.transformOrigin = "0 0";
+				gameContainer.style.transform = "scale("+1.0/devicePixelRatio+")";
 			}
+			function initCallback(target, progress){
+				gameContainer.style.display = 'block';
+			}
+			var gameInstance = UnityLoader.instantiate(
+				"game-container",
+				"Release/trumptris.json",
+				{
+					Module: {
+						onRuntimeInitialized: initCallback
+					},
+				}
+			);
 		</script>
-		<script type='text/javascript'>
-			var Module = {
-				TOTAL_MEMORY: 268435456,
-				errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
-				compatibilitycheck: null,
-				backgroundColor: "#00000000",
-				splashStyle: "Dark",
-				dataUrl: "Release/trumptris.data",
-				codeUrl: "Release/trumptris.js",
-				asmUrl: "Release/trumptris.asm.js",
-				memUrl: "Release/trumptris.mem",
-			};
-		</script>
-		<script src="Release/UnityLoader.js"></script>
 	</body>
 </html>
